@@ -32,7 +32,7 @@ $username= $_SESSION['username'];
 
         <div class="body">
             <div class="date"><?php echo $date;?></div>
-            <h1><?php echo $greeting ; echo $username ; echo $_SESSION['user_id'];?></h1>
+            <h1><?php echo $greeting ; echo $username ; ?></h1>
             
         </div>
         <div class="col">
@@ -40,7 +40,7 @@ $username= $_SESSION['username'];
 					<h3>Projects</h3> <br>
                     <?php
                     // Construct the SQL query to retrieve the projects involving the logged-in user
-$sql = "SELECT * FROM projects WHERE member1 = '{$_SESSION['user_id']}'";
+$sql = "SELECT * FROM projects WHERE member1 = '{$_SESSION['user_id']}' OR member2 = '{$_SESSION['user_id']}' OR member3 = '{$_SESSION['user_id']}' OR member4 = '{$_SESSION['user_id']}'";
 // Execute the query
 $result = mysqli_query($con, $sql);
 if (!$result) {
@@ -50,16 +50,33 @@ if (!$result) {
 // Check if any results were returned
 if (mysqli_num_rows($result) > 0) {
   // Output the projects
-  while ($row = mysqli_fetch_assoc($result)) {
-    echo "Project ID: " . $row["project_id"] . "<br>";
-    echo "Project Name: " . $row["project_name"] . "<br>";
+  while ($row = mysqli_fetch_assoc($result)) { ?>
+    <div class="project_data id">
+        ID<br>
+        <?php echo  $row["project_id"] ; ?>
+        </div>
+
+        <div class="project_data name">
+        Project <br>
+        <?php echo  $row["project_name"] ; ?>
+        </div>
+
+        <div class="project_data description">
+        Details <br>
+        <?php echo  $row["project_details"] ; ?>
+        </div><br>
+<?php
+    // echo "Project Name: " . $row["project_name"] . "<br>";
+    // echo"Type: ".$row["project_type"]."<br>";
+    // echo"Details:".$row["project_details"]."<br>";
+
   }
 } else {
   echo "No projects found.";
 }
 
 // Close the database connection
-mysqli_close($con);
+// mysqli_close($con);
 ?>
                     <!-- <p>You don't have any projects yet !</p> -->
                     <!-- <img src="../illustrations/Whoosh/VR.png" alt="" width="200" height="250"> -->
@@ -67,8 +84,51 @@ mysqli_close($con);
                     <a href="../project-creating-form.php"><button>Make Request</button></a>
 				</div>
 				<div class="card card2">
-					<h3>Your team members</h3>
-					<p></p>
+					<h3>Your team members</h3><br>
+					<?php
+// execute the SQL query and store the team_member in a variable
+$team_member = mysqli_query($con, "SELECT 
+    p.project_id, 
+    p.project_name, 
+    u1.username AS member1_name, 
+    u2.username AS member2_name, 
+    u3.username AS member3_name, 
+    u4.username AS member4_name 
+FROM 
+    projects p 
+    LEFT JOIN users AS u1 ON p.member1 = u1.user_id 
+    LEFT JOIN users AS u2 ON p.member2 = u2.user_id 
+    LEFT JOIN users AS u3 ON p.member3 = u3.user_id 
+    LEFT JOIN users AS u4 ON p.member4 = u4.user_id 
+WHERE 
+    p.member1 = '{$_SESSION['user_id']}' 
+    OR p.member2 = '{$_SESSION['user_id']}' 
+    OR p.member3 = '{$_SESSION['user_id']}' 
+    OR p.member4 = '{$_SESSION['user_id']}';
+");
+// check if there is any error in executing the query
+
+if (!$team_member) {
+  die("Failed to execute query: " . mysqli_error($con));
+}
+
+// loop through the rows in the team_member and display the data
+while ($row = mysqli_fetch_assoc($team_member)) {
+  // echo "Project ID: " . $row["project_id"] . "<br>";
+  // echo "Project Name: " . $row["project_name"] . "<br>";
+  echo "Member 1: " . $row["member1_name"] . "<br>";
+  echo "Member 2: " . $row["member2_name"] . "<br>";
+  echo "Member 3: " . $row["member3_name"] . "<br>";
+  echo "Member 4: " . $row["member4_name"] . "<br><br>";
+}
+
+// close the database connection
+mysqli_close($con);
+?>
+
+
+
+                    
                     <button style="cursor:pointer;"id="openFormBtn">Manage team</button>
 				</div>
                 <div class="card card3">

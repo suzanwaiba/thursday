@@ -86,11 +86,16 @@
                         <div class="input-field">
                             <label> Supervisor</label>
                             <select name="supervisor" id="team_members" required>
-                            <option value="" disabled selected>Select your supervisor</option>
-                            <option value="supervisor1">Prabin Shrestha</option>
-                            <option value="supervisor2">Sumit Bidari</option>
-                            <option value="supervisor3">Anup Bhuju</option>
-                            <option value="supervisor4">Supervisor 4</option>
+                            <option value="" disabled selected>Select from users</option>
+                            <?php
+                            // Connecting to the database and retrieve the list of available users
+                            include '../html/dbcon.php';
+                            $result = mysqli_query($con, "SELECT * FROM supervisors");
+                            // Loop through the results and create an option for each user
+                            while($row = mysqli_fetch_array($result)) {
+                            echo "<option value='" . $row['supervisor_id'] . "'>" . $row['supervisor_name'] . "</option>";
+                            }
+                            ?>
                             </select>
                         </div>
                         

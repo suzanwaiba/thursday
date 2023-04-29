@@ -23,7 +23,7 @@ li {
 
 #sarnuparyo {
 	position: relative;
-	width: calc(100% - 280px);
+	width: calc(100% - 250px);
 	transition: .5s ease;
 	left: 100px;
 }
@@ -35,7 +35,7 @@ li {
 	overflow-y: auto;
 }
 #sarnuparyo main  h1 {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -43,7 +43,7 @@ li {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-gap: 24px;
-	margin-top: 36px;
+	margin-top: 18px;
 }
 #sarnuparyo main .box-info li {
 	padding: 24px;
@@ -64,15 +64,15 @@ li {
 	padding: 10px;
 }
 #sarnuparyo main .box-info li:nth-child(1) .bx {
-	background: lightblue;
+	background: #ddd;
 	color: blue;
 }
 #sarnuparyo main .box-info li:nth-child(2) .bx {
-	background: lightgreen;
+	background: #ddd;
 	color: green;
 }
 #sarnuparyo main .box-info li:nth-child(3) .bx {
-	background: lightcoral;
+	background: #ddd;
 	color: coral;
 }
 #sarnuparyo main .box-info li .text h3 {
@@ -341,7 +341,7 @@ color: #2e2e2e;
 .content-table {
     border-collapse: collapse;
     font-size: 0.9em;
-    width: 77em;
+    width: 73em;
     border-radius: 5px 5px 0 0;
     /* overflow: hidden; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

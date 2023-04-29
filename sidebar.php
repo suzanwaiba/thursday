@@ -22,7 +22,7 @@ body{
 #sidebar{
 	position: fixed;
 left: -280px;
-width: 280px;
+width: 250px;
 height: 100%;
 transition: all .5s ease;
 border: 1px solid rgba(255, 255, 255, 0.18);
@@ -50,7 +50,7 @@ border-top-right-radius: 14px;
 	height: 100%;
 	width: 100%;
 	line-height: 65px;
-	font-size: 17px;
+	font-size: 14px;
 	color: black;
 	padding-left: 25px;
 	box-sizing: border-box;
@@ -105,7 +105,7 @@ label #cancel{
 }
 
 #check:checked ~ #sarnuparyo{
-	margin-left: 180px;
+	margin-left: 150px;
 }
 .sidebar .logout {
 	margin-top: 20px;
@@ -138,8 +138,8 @@ grid-gap: 7px;
     </style>
     <input type="checkbox" id="check" checked>
     <label for="check">
-        <i class="fas fa-bars" id="btn"></i>
-        <i class="fas fa-times" id="cancel"></i>
+       <!--  <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i> -->
     </label>
     <div class="sidebar" id="sidebar">
         <header><img src="../illustrations/logo.png" width="25" height="25"> Management</header>

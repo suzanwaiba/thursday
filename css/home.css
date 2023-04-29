@@ -61,13 +61,13 @@ text-decoration: none;
     opacity: 0.4;
 
 }
-.home_content .col .card.card1 a {
+/*.home_content .col .card.card1 a {
   display: inline-block;
   text-decoration: none;
   position: relative;
   left: 26em;
   top: 4em;
-}
+}*/
 .home_content .col .card.card1 button{
 background-color: darkcyan;
   color: white;
